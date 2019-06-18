@@ -1,0 +1,24 @@
+= lbocp-test
+
+A simple test-app to test out different load balancing configurations in OpenShift
+
+== OpenShift Routing Architecture
+
+External Load Balancer -> Routers -> Pods
+
+== Round Robin
+
+Equally weighted round robin
+
+== Least Connections
+
+Server with least load
+
+== Source
+
+Hashed by Client (source) IP.
+
+== Setting Cookies in the Router
+
+== AWS
+
