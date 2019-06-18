@@ -1,6 +1,6 @@
 FROM registry.redhat.io/rhel8/go-toolset
 
-COPY main.go
+COPY main.go ./
 
 USER root
 
