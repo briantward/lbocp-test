@@ -4,7 +4,13 @@ A simple test-app to test out different load balancing configurations in OpenShi
 
 == OpenShift Routing Architecture
 
-External Load Balancer -> Routers -> Pods
+External Load Balancer -> Routers (haproxy pods) -> Pods
+
+== Project Setup
+
+There is an HTTP Server that can be scaled 1 to n.
+
+There is a test request runner that can be scaled 1 to n.  The test request runner will run and determine the load balancer configuration from the result set of requests to the HTTP server.
 
 == Round Robin
 
