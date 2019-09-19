@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ImageStream
+metadata:
+  labels:
+    build: lbocp
+  name: lbocp
+  namespace: lb
+spec:
+  lookupPolicy:
+    local: false

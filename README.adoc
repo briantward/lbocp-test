@@ -12,6 +12,18 @@ There is an HTTP Server that can be scaled 1 to n.
 
 There is a test request runner that can be scaled 1 to n.  The test request runner will run and determine the load balancer configuration from the result set of requests to the HTTP server.
 
+== Route Setup
+
+. Plain http setup
+
+. Edge encryption: https -> http
+
+. Reencrypt: https -> https
+
+. Passthrough: tcp -> https
+
+Balance round robin and leastconn will always perform without sticky session because the router is unable to set a cookie on TCP passthrough traffic.  Therefore, the only stick session option on passthrough is `balance source`.  There are known limitations to this: when a user comes from two separate browsers and sessions, they will share the same endpoint; when one or more users come from the same client IP, either by NAT or by proxy, they will share the same endpoint.  If you have large numbers of users coming from NAT'ed or proxy IPs, then you should consider clustering your session cookies on your backend application and use roundrobin or leastconn at the load balancer.  
+
 == Round Robin
 
 Equally weighted round robin

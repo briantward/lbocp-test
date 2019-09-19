@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    build: lbocp
+  name: lbocp
+  namespace: lb
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: lbocp:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      ref: 0.x
+      uri: https://github.com/briantward/lbocp-test
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: go-toolset:latest
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: hFvJSdIb4_XAAEen_WIB
+    type: GitHub
+  - generic:
+      secret: QvG-qGgFIkCS04w6og1b
+    type: Generic
+  - type: ConfigChange
+  - imageChange:
+      lastTriggeredImageID: registry.redhat.io/rhel8/go-toolset@sha256:1df5f09e08d7a4564e2f9d573f910542cb4c2d866d116ab9d43c211612df4ab9
+    type: ImageChange

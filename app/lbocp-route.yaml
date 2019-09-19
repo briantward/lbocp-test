@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Route
+metadata:
+  annotations:
+    haproxy.router.openshift.io/balance: roundrobin
+  labels:
+    app: lbocp
+  name: lbocp
+  namespace: lb
+spec:
+  host: lbocp-lb.apps.zorrow.lab.rdu2.cee.redhat.com
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: lbocp
+    weight: 100
+  wildcardPolicy: None

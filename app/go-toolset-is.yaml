@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ImageStream
+metadata:
+  labels:
+    build: lbocp
+  name: go-toolset
+  namespace: lb
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+  - annotations:
+      openshift.io/imported-from: registry.redhat.io/rhel8/go-toolset
+    from:
+      kind: DockerImage
+      name: registry.redhat.io/rhel8/go-toolset
+    importPolicy: {}
+    name: latest
+    referencePolicy:
+      type: Source
